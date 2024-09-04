@@ -11,8 +11,8 @@
 <body>
 {% block contenido %} {% endblock %}
          
- <script src="/js/bootstrap.bundle.min.js"></script> 
- <script src="/js/all.min.js" ></script>
- <script src="/js/scrollreveal.min.js"></script>
+ <script src="{{url_for('static',filename='/js/bootstrap.bundle.min.js')}}"></script> 
+ <script src="{{url_for('static',filename='/js/all.min.js')}}" ></script>
+ <script src="{{url_for('static',filename='//js/scrollreveal.min.js')}}"></script>
 </body>
 </html>
