@@ -1,34 +1,34 @@
 {% extends 'layout.html' %}
-{% block titulo %} Registrate {% endblock %}
+{% block titulo %} registro {% endblock %}
 {% block contenido %}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="/">cineo</a>
+        <a class="navbar-brand" href="/">cineo</a>
           
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-              <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link "href="/signup">Registrate</a>
-              </li>
-              <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link "href="/signin"><i class="fa-regular fa-user"></i></a>
-              </li>
+            </li>
             </ul>
-          </div>
         </div>
-      </nav>
-      <div class="container">
+        </div>
+    </nav>
+    <div class="container">
   <div class="login-container">
     <h1>Iniciar Sesión</h1>
     <form action="/signin" method="post">
