@@ -55,6 +55,11 @@ def signup():
         return redirect(url_for('home'))
     else:
         return render_template('signup.html')
+@cineo.route('/signout', methods=['GET','POST'])
+def signout():
+    logout_user()
+    return redirect(url_for('home'))
+
 
 if __name__ == "__main__":
     cineo.config.from_object(config['development'])
