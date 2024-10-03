@@ -59,6 +59,14 @@ def signout():
     logout_user()
     return redirect(url_for('home'))
 
+@cineo.route('/sUsuario', methods=['GET','POST'])
+def sUsuario():
+    sUsuario = db.connection.cursor()
+    sUsuario.execute("SELECT * FROM usuario")
+    u = sUsuario.fetchall()
+    sUsuario.close()
+    return render_template('usuarios.html',usuarios=u)
+
 if __name__ == "__main__":
     cineo.config.from_object(config['development'])
     cineo.run(port=5000)
