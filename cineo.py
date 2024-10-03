@@ -24,8 +24,7 @@ def signin():
     if request.method == 'POST':
         usuario = User(0, None, request.form['correo'], request.form['clave'], None, None)
         usuarioAutenticado = ModelUser.signin(db, usuario)
-        if usuarioAutenticado:
-            # Aquí asumimos que la clave se verifica con la función check_password_hash
+        if usuarioAutenticado.clave:
             if check_password_hash(usuarioAutenticado.clave, request.form['clave']):
                 login_user(usuarioAutenticado)
                 if usuarioAutenticado.perfil == 'A':
