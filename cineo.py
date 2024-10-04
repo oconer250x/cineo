@@ -22,20 +22,22 @@ def home():
 @cineo.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
-        usuario = User(0, None, request.form['correo'], request.form['clave'], None, None)
-        usuarioAutenticado = ModelUser.signin(db, usuario)
-        if usuarioAutenticado.clave:
-            if check_password_hash(usuarioAutenticado.clave, request.form['clave']):
+        usuario = User(0,None,request.form['correo'],request.form['clave'],None,None)
+        usuarioAutenticado = ModelUser.signin(db,usuario)
+        if usuarioAutenticado is not None:
+            if usuarioAutenticado.clave:
                 login_user(usuarioAutenticado)
                 if usuarioAutenticado.perfil == 'A':
                     return render_template('admin.html')
                 else:
-                    return render_template('user.html')
+                    return render_template ('user.html')
             else:
-                return 'Contraseña incorrecta'
+                return 'contraseña incorrecta'
         else:
-            return 'Usuario inexistente'
-    return render_template('signin.html')
+            return 'usuario inexistente'
+    else:
+        return render_template('signin.html')
+
 
 @cineo.route('/signup', methods=['POST', 'GET'])
 def signup():
@@ -50,7 +52,7 @@ def signup():
         cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrada, fechaReg))
         db.connection.commit()
         cursor.close()
-        return redirect(url_for('signin'))  # Redirige al iniciar sesión después del registro
+        return redirect(url_for('signin'))  
     return render_template('signup.html')
 
 @cineo.route('/signout', methods=['GET', 'POST'])
