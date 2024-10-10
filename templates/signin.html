@@ -32,6 +32,16 @@
   <div class="login-container">
     <h1>Iniciar Sesión</h1>
     <form action="/signin" method="post">
+      {% with mensajes = get_flashed_messages() %}
+      {% if mensajes %}
+      {% for m in mensajes %}
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
         <input type="email" name="correo" placeholder="Nombre de Usuario" required>
         <br>
         <input type="password" name="clave" placeholder="Contraseña" required>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -34,7 +34,8 @@ def signin():
             else:
                 return 'contraseña incorrecta'
         else:
-            return 'usuario inexistente'
+            flash('Contraseña incorrecta')
+            return redirect(url_for('request.url'))
     else:
         return render_template('signin.html')
 
@@ -47,12 +48,11 @@ def signup():
         clave = request.form['clave']
         claveCifrada = generate_password_hash(clave)
         fechaReg = datetime.datetime.now()
-        
         cursor = db.connection.cursor()
         cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrada, fechaReg))
         db.connection.commit()
-        cursor.close()
-        return redirect(url_for('signin'))  
+    cursor.close()
+    return redirect(url_for('signin'))  
     return render_template('signup.html')
 
 @cineo.route('/signout', methods=['GET', 'POST'])
@@ -67,6 +67,19 @@ def sUsuario():
     u = sUsuario.fetchall()
     sUsuario.close()
     return render_template('usuarios.html',usuarios=u)
+
+@cineo.route('/iUsuario',methods=['GET', 'POST'])
+def iUsuario():
+    nombre = request.form['nombre']
+    correo = request.form['correo']
+    clave = request.form['clave']
+    claveCifrada = generate_password_hash(clave)
+    fechaReg = datetime.datetime.now()
+    perfil = request.form
+    cursor = db.connection.cursor()
+    cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg, perfil) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrada, fechaReg, perfil))
+    db.connection.commit()
+    return redirect(url_for('sUsuario'))
 
 if __name__ == "__main__":
     cineo.config.from_object(config['development'])

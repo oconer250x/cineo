@@ -54,7 +54,7 @@
             <th scope="col">Clave</th>
             <th scope="col">FechaReg</th>
             <th scope="col">Perfil</th>
-            <th scope="col" colspan="2"> &nbsp; </th>
+            <th scope="col" colspan="2"> <i class="fa-solid fa-user-plus" style="color: #ff0000;"></i> </th>
             
           </tr>
         </thead>
@@ -67,16 +67,16 @@
             <td>{{u.clave}}</td>
             <td>{{u.fechaReg}}</td>
             <td>{{u.erfil}}</td>
+            <i class="fa-solid fa-user-minus" style="color: #ff0000;"></i>
             <td> 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar{{u.0}}">
-    Launch demo modal
+                  <i class="fa-solid fa-user-pen" style="color: #ff0000;"></i>
   </button> &nbsp; </td>
-            <td> &nbsp; </td>
           </tr>
           
   
-  <!-- Modal -->
+  <!-- Modal Editor -->
   <div class="modal fade" id="editar{{u.o}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -95,19 +95,6 @@
     </div>
   </div>
           {% endfor %}
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@X</td>
-          </tr>
-        </tbody>
-      </table>
-      </table>
 </div>
 
+{% endblock %}
