@@ -84,8 +84,27 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          
+        <form method="post" action="/uUsuario/{{u.0}}" method="post">
+          <div class="modal-body">
+              <label for="nombre">{{u.1}}</label>
+              <input type="text" id="nombre" name="nombre" required>
+              <br>
+              <label for="email">{{u.2}}</label>
+              <input type="email" id="email" name="correo" required>
+              <br>
+              <select name="perfil" class="form-select form-select-lg mb-3" aria-label="Large select example">
+                <option selected>{{u.5}}</option>
+                <option value="A">Administrador</option>
+                <option selected value="U">Usuario</option>
+              </select>
+              
+              <select class="form-select form-select-sm" aria-label="Small select example">
+                <option selected>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

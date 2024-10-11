@@ -79,6 +79,19 @@ def iUsuario():
     cursor = db.connection.cursor()
     cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg, perfil) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrada, fechaReg, perfil))
     db.connection.commit()
+    flash('usuario agregado')
+    return redirect(url_for('sUsuario'))
+
+@cineo.route('/uUsuario/<int:id>', methods=['GET', 'POST'])
+def uUsuario(id):
+    nombre=request.form['nombre']
+    correo=request.form['correo']
+    perfil=request.form['perfil']
+    actUsuario = db.connection.cursor()
+    actUsuario.execute("UPDATE usuario SET nombre=%s,correo=%s,perfil%s WHERE id=%s", (nombre.upper(),correo,perfil))
+    db.connection.commit()
+    actUsuario.close()
+    flash('usuario actualizado')
     return redirect(url_for('sUsuario'))
 
 if __name__ == "__main__":
