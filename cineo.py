@@ -51,9 +51,9 @@ def signup():
         cursor = db.connection.cursor()
         cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)", (nombre, correo, claveCifrada, fechaReg))
         db.connection.commit()
-    cursor.close()
-    return redirect(url_for('signin'))  
-    return render_template('signup.html')
+        return redirect(url_for('home.html'))
+    else:
+        return render_template('signup.html')
 
 @cineo.route('/signout', methods=['GET', 'POST'])
 def signout():
@@ -92,6 +92,14 @@ def uUsuario(id):
     db.connection.commit()
     actUsuario.close()
     flash('usuario actualizado')
+    return redirect(url_for('sUsuario'))
+
+@cineo.route('/dUsuario/<int:id>', methods=['GET', 'POST'])
+def dUsuario(id):
+    deldUsuario= db.connection.cursor()
+    deldUsuario.execute("DELETE FROM usuario WHERE id=%s",(id,))
+    db.connection.commit()
+    flash('Usuario eliminado')
     return redirect(url_for('sUsuario'))
 
 if __name__ == "__main__":
