@@ -107,7 +107,8 @@ def dUsuario(id):
     flash('Usuario eliminado')
     return redirect(url_for('sUsuario'))
 
-@cineo.route('/sPerfiles', methods=['GET'])
+@cineo.route('/sPerfiles', methods=['GET']
+             
 def sPerfiles():
     cursor = db.connection.cursor()
     cursor.execute("SELECT * FROM perfiles")
