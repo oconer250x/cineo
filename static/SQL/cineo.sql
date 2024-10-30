@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-10-2024 a las 00:02:01
+-- Tiempo de generación: 29-10-2024 a las 23:09:06
 -- Versión del servidor: 5.7.44-log
 -- Versión de PHP: 7.4.9
 
@@ -215,6 +215,16 @@ ALTER TABLE `usuarionueva`
 --
 ALTER TABLE `usuarionuevo`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `usuarionueva`
+--
+ALTER TABLE `usuarionueva`
+  ADD CONSTRAINT `usuarionueva_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
