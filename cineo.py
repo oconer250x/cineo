@@ -1,4 +1,4 @@
-from flask import Flask, flash, render_template, request, redirect, url_for
+from flask import Flask, flash, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -26,12 +26,14 @@ def signin():
         usuarioAutenticado = ModelUser.signin(db, usuario)
         
         if usuarioAutenticado is not None:
-            if check_password_hash(usuarioAutenticado.clave, request.form['clave']):
+            if usuarioAutenticado.clave:
                 login_user(usuarioAutenticado)
+                session ['NombreU'] = usuarioAutenticado.nombre
+                session ['PerfilU'] = usuarioAutenticado.perfil
                 if usuarioAutenticado.perfil == 'A':
                     return render_template('admin.html')
                 else:
-                    return render_template('sPerfiles.html')
+                    return redirect(url_for('sPeliculas'))
             else:
                 flash('Contraseña incorrecta')
                 return redirect(url_for('signin'))  
@@ -49,9 +51,8 @@ def signup():
         clave = request.form['clave']
         claveCifrada = generate_password_hash(clave)
         fechaReg = datetime.datetime.now()
-        
-        cursor = db.connection.cursor()
-        cursor.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)",(nombre, correo, claveCifrada, fechaReg))
+        regUsuario = db.connection.cursor()
+        regUsuario.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)",(nombre, correo, claveCifrada, fechaReg))
         db.connection.commit()
         return redirect(url_for('home'))
     else:
@@ -107,14 +108,15 @@ def dUsuario(id):
     flash('Usuario eliminado')
     return redirect(url_for('sUsuario'))
 
-@cineo.route('/sPerfiles', methods=['GET']
-             
+@cineo.route('/sPeliculas', methods=['GET', 'POST'])
 def sPerfiles():
-    cursor = db.connection.cursor()
-    cursor.execute("SELECT * FROM perfiles")
-    perfiles = cursor.fetchall()
-    cursor.close()
-    return render_template('user.html', perfiles=perfiles)
+    selPeliculas = db.connection.cursor()
+    selPeliculas.execute("SELECT * FROM peliculas")
+    pel = selPeliculas.fetchall()
+    selPeliculas.close()
+    if session['PerfilU'] == 'A':
+        return render_template ('peliculas.html', peliculas=pel)
+    return render_template('user.html', peliculas=pel)
 
 if __name__ == "__main__":
     cineo.config.from_object(config['development'])
