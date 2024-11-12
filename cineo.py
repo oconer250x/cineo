@@ -9,6 +9,8 @@ from models.entities.User import User
 
 cineo = Flask(__name__)
 db = MySQL(cineo)
+#pythonanywhere
+cineo.config.from_object(config['development'])
 adminSession = LoginManager(cineo)
 
 @adminSession.user_loader
@@ -118,6 +120,6 @@ def sPerfiles():
         return render_template ('peliculas.html', peliculas=pel)
     return render_template('user.html', peliculas=pel)
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     cineo.config.from_object(config['development'])
-    cineo.run(port=5000)
+    cineo.run(port=5000) '''
