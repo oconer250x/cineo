@@ -3,10 +3,11 @@ class Config:
     DEBUG = True 
 
 class DevelopmentConfig(Config):
-    MYSQL_HOST = 'localhost'
+    '''MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
     MYSQL_PASSWORD = 'mysql'
-    MYSQL_DB = 'cineo'
+    MYSQL_DB = 'cineo' '''
+
 
     #pythonanywhere
     MYSQL_HOST = 'cineo.mysql.pythonanywhere-services.com'
