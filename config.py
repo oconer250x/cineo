@@ -8,11 +8,11 @@ class DevelopmentConfig(Config):
     MYSQL_PASSWORD = 'mysql'
     MYSQL_DB = 'cineo'
 
-        #pythonanywhere
-        MYSQL_HOST = 'localhost'
-        MYSQL_USER = 'root'
-        MYSQL_PASSWORD = 'oconerelcrack'
-        MYSQL_DB = 'cineo$cineo'
+    #pythonanywhere
+    MYSQL_HOST = 'cineo.mysql.pythonanywhere-services.com'
+    MYSQL_USER = 'cineo'
+    MYSQL_PASSWORD = 'oconerelcrack'
+    MYSQL_DB = 'cineo$cineo'
 
 config = {
     'development': DevelopmentConfig
