@@ -1,55 +1,57 @@
 {% extends 'layout.html' %}
 {% block titulo %} Registrate {% endblock %}
-{% block contenido %}
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/">cineo</a>
-          
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "href="/signup">Registrate</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link "href="/signin"><i class="fa-regular fa-user"></i></a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="container">
-  <div class="login-container">
-    <h1>Iniciar Sesión</h1>
-    <form action="/signin" method="post">
-      {% with mensajes = get_flashed_messages() %}
-      {% if mensajes %}
-      {% for m in mensajes %}
-      <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-        <input type="email" name="correo" placeholder="Nombre de Usuario" required>
-        <br>
-        <input type="password" name="clave" placeholder="Contraseña" required>
-        <br>
-        <button type="submit">Entrar</button>
-    </form>
-    <a href="#">¿Olvidaste tu contraseña?</a>
-</div>
 
+{% block contenido %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">cineo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Registrate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signin"><i class="fa-regular fa-user"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="login-container">
+        <h1>Iniciar Sesión</h1>
+        <form action="/signin" method="post">
+            {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for m in mensajes %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Error:</strong> {{ m }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <input type="email" name="correo" class="form-control" placeholder="Nombre de Usuario" required>
+            <br>
+            <input type="password" name="clave" class="form-control" placeholder="Contraseña" required>
+            <br>
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+        <a href="#">¿Olvidaste tu contraseña?</a>
+    </div>
 </div>
 {% endblock %}
+

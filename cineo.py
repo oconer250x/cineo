@@ -21,6 +21,7 @@ def load_user(user_id):
 def home():
     return render_template('home.html')
 
+
 @cineo.route('/signin', methods=['GET', 'POST'])
 def signin():
     if request.method == 'POST':
@@ -120,6 +121,6 @@ def sPerfiles():
         return render_template ('peliculas.html', peliculas=pel)
     return render_template('user.html', peliculas=pel)
 
-'''if __name__ == "__main__":
+''' if __name__ == "__main__":
     cineo.config.from_object(config['development'])
     cineo.run(port=5000) '''
