@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
-{% block titulo %} Registrate {% endblock %}
+
+{% block titulo %}Iniciar Sesión{% endblock %}
 
 {% block contenido %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -11,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Features</a>
@@ -20,7 +21,7 @@
                     <a class="nav-link" href="#">Pricing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/signup">Registrate</a>
+                    <a class="nav-link" href="/signup">Regístrate</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signin"><i class="fa-regular fa-user"></i></a>
@@ -44,14 +45,23 @@
                 {% endfor %}
             {% endif %}
             {% endwith %}
-            <input type="email" name="correo" class="form-control" placeholder="Nombre de Usuario" required>
+            
+            <!-- Input para el correo -->
+            <input type="email" name="correo" class="form-control" placeholder="Correo Electrónico" required>
             <br>
+
+            <!-- Input para la contraseña -->
             <input type="password" name="clave" class="form-control" placeholder="Contraseña" required>
             <br>
+
+            <!-- Botón para enviar el formulario -->
             <button type="submit" class="btn btn-primary">Entrar</button>
         </form>
+
+        <!-- Enlace para recuperar la contraseña -->
         <a href="#">¿Olvidaste tu contraseña?</a>
     </div>
 </div>
 {% endblock %}
+
 

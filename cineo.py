@@ -1,6 +1,7 @@
 from flask import Flask, flash, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from flask_login import LoginManager, login_user, logout_user
+from flask_mail import Mail,Message
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 from config import config
@@ -9,9 +10,14 @@ from models.entities.User import User
 
 cineo = Flask(__name__)
 db = MySQL(cineo)
+
 #pythonanywhere
 cineo.config.from_object(config['development'])
+cineo.config.from_object(config['mail'])
+db           = MySQL(cineo)
+Mail         = Mail(cineo)
 adminSession = LoginManager(cineo)
+
 
 @adminSession.user_loader
 def load_user(user_id):
@@ -57,6 +63,9 @@ def signup():
         regUsuario = db.connection.cursor()
         regUsuario.execute("INSERT INTO usuario (nombre, correo, clave, fechareg) VALUES (%s, %s, %s, %s)",(nombre, correo, claveCifrada, fechaReg))
         db.connection.commit()
+        mensaje = Message(subject='Bienvenido XD', recipients=[correo])
+        mensaje.html = render_template('mail.html', nombre=nombre)
+        Mail.send(mensaje)
         return redirect(url_for('home'))
     else:
         return render_template('signup.html')
@@ -121,6 +130,6 @@ def sPerfiles():
         return render_template ('peliculas.html', peliculas=pel)
     return render_template('user.html', peliculas=pel)
 
-''' if __name__ == "__main__":
-    cineo.config.from_object(config['development'])
-    cineo.run(port=5000) '''
+if __name__ == "__main__":
+
+    cineo.run(port=3300)
