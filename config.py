@@ -16,7 +16,7 @@ class DevelopmentConfig(Config):
     MYSQL_DB = 'cineo$cineo' '''
 
 class MailConfig(Config):
-    MAIN_SERVER         = 'smto.gmail.com'
+    MAIL_SERVER         = 'smto.gmail.com'
     MAIL_PORT           = 587
     MAIL_USE_TLS        = True
     MAIL_USE_SSL        = False
