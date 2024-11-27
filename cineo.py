@@ -54,7 +54,7 @@ def signin():
                 if usuarioAutenticado.perfil == 'A':
                     return render_template('admin.html')
                 else:
-                    return redirect(url_for('ssResenas')
+                    return redirect(url_for('sPeliculas'))
             else:
                 flash('Contraseña incorrecta')
             return redirect(request.url)

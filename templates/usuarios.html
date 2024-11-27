@@ -3,44 +3,28 @@
 {% block titulo %}La magia del cine a tu alcance{% endblock %}
 
 {% block contenido %}
-<nav class="navbar bg-body-tertiary fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/admin">Offcanvas navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="/sUsuario">Usuario</a></li>
-                            <li><a class="dropdown-item" href="#">Otra acción</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex mt-3" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
-            </div>
-        </div>
-    </div>
+    <!-- Logo o nombre de la marca -->
+    <a class="navbar-brand" href="/admin">Cineo</a>
+    <!-- Botón para dispositivos móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- Enlaces de la barra de navegación -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/admin">Inicio</a>
+        </li><li class="nav-item">
+            <a class="nav-link" href="#">Películas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Series</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Novedades</a>
+    </li>
 </nav>
 
 <div class="container">
@@ -66,33 +50,33 @@
                 <td>{{ u.5 }}</td>
                 <td>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar{{ u.id }}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editar{{ u.0 }}">
                         <i class="fa-solid fa-user-pen" style="color: #ff0000;"></i>
                     </button>
                 </td>
                 <td>
                     <!-- Button trigger modal eliminar -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar{{ u.id }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminar{{ u.0 }}">
                         <i class="fa-solid fa-user-minus" style="color: #ff0000;"></i>
                     </button>
                 </td>
             </tr>
 
             <!-- Modal Editar -->
-            <div class="modal fade" id="editar{{ u.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editar{{ u.0 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Editar usuario</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="post" action="/uUsuario/{{ u.id }}">
+                        <form method="post" action="/uUsuario/{{ u.0 }}">
                             <div class="modal-body">
                                 <label for="nombre">Nombre</label>
-                                <input type="text" id="nombre" name="nombre" value="{{ u.nombre }}" required>
+                                <input type="text" id="nombre" name="nombre" value="{{ u.1 }}" required>
                                 <br>
                                 <label for="email">Correo</label>
-                                <input type="email" id="email" name="correo" value="{{ u.correo }}" required>
+                                <input type="email" id="email" name="correo" value="{{ u.2 }}" required>
                                 <br>
                                 <select name="perfil" class="form-select form-select-lg mb-3" aria-label="Large select example">
                                     <option value="{{ u.perfil }}" selected>{{ u.perfil }}</option>
@@ -110,7 +94,7 @@
             </div>
 
             <!-- Modal Eliminar -->
-            <div class="modal fade" id="eliminar{{ u.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="eliminar{{ u.0 }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -135,3 +119,4 @@
 </div>
 
 {% endblock %}
+

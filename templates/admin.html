@@ -3,53 +3,45 @@
 {% block titulo %}La magia del cine a tu alcance{% endblock %}
 
 {% block contenido %}
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/admin">Navbar</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/sUsuario">usuario</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">{{current_user.nombre}}</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signout">cerrar session</a>
-          </li>
-        </ul>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
-      </div>
-    </div>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <!-- Logo o nombre de la marca -->
+    <a class="navbar-brand" href="/admin">Cineo</a>
+    
+    <!-- Botón para dispositivos móviles -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Enlaces de la barra de navegación -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/admin">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Películas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Series</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Novedades</a>
+        </li>
+        
+        <!-- Dropdown para más opciones -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Más
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/sUsuario">usuarios</a></li>
+            <li><a class="dropdown-item" href="/sPeliculas">peliculas</a></li>
+            
+          </ul>
+        </li>
+      </nav>
 
-
-    <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-</div>
 
 <div id="carouselExampleAutoplaying" class="carousel slide mt-4" data-bs-ride="carousel">
     <div class="carousel-inner">
